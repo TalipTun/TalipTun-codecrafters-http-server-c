@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 int main() {
+	printf("Starting server...\n");
 	// Disable output buffering
 	setbuf(stdout, NULL);
  	setbuf(stderr, NULL);
