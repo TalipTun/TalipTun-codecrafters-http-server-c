@@ -19,6 +19,7 @@ int main() {
 	int server_fd, client_addr_len;
 	struct sockaddr_in client_addr;
 	
+	printf("Connecting");
 	server_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_fd == -1) {
 		printf("Socket creation failed: %s...\n", strerror(errno));
