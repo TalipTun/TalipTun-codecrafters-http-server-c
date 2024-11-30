@@ -110,15 +110,18 @@ int main() {
         printf("404 path detected\n");
         if (send(client_fd, response_404, strlen(response_404), 0) < 0) {
             printf("Send failed: %s\n", strerror(errno));
-            return 1;
+        } else {
+            printf("404 response sent successfully\n");
         }
     } else {
         printf("200 path detected\n");
         if (send(client_fd, response_200, strlen(response_200), 0) < 0) {
             printf("Send failed: %s\n", strerror(errno));
-            return 1;
+        } else {
+            printf("200 response sent successfully\n");
         }
     }
+	
 	printf("4\n");
 
 	//cloose the client connection
