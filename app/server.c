@@ -8,19 +8,14 @@
 #include <unistd.h>
 
 int main() {
-	printf("Starting server...\n");
 	// Disable output buffering
 	setbuf(stdout, NULL);
  	setbuf(stderr, NULL);
-
-	// You can use print statements as follows for debugging, they'll be visible when running tests.
-	printf("Logs from your program will appear here!\n");
 
 	int server_fd, client_addr_len, client_fd;
 	struct sockaddr_in client_addr;
 	
 	// Creating socket file descriptor
-	printf("Connecting");
 	server_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_fd == -1) {
 		printf("Socket creation failed: %s...\n", strerror(errno));
@@ -53,7 +48,6 @@ int main() {
 		return 1;
 	}
 	
-	printf("Waiting for a client to connect...\n");
 	client_addr_len = sizeof(client_addr);
 	
 	client_fd = accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
@@ -62,73 +56,20 @@ int main() {
         printf("Accept failed: %s\n", strerror(errno));
         return 1;
     }
-	printf("Client connected\n");
-
-	char response_200[] =
-        "HTTP/1.1 200 OK\r\n"       // HTTP version and status code
-        "Content-Length: 13\r\n"    // Length of the body
-        "Content-Type: text/plain\r\n" // Content type
-        "\r\n"                      // Blank line to separate headers and body
-        "Hello, Worldddd!";            // Response body
-
-	char response_404[] = 
-		"HTTP/1.1 404 Not Found\r\n"   // HTTP version and status code
-        "Content-Type: text/plain\r\n" // Content type
-        "Content-Length: 14\r\n"       // Content length
-        "\r\n"                         // Blank line to separate headers and body
-        "Page Not Found";              // Response body
-/*
-	if (send(client_fd, response_200, strlen(response_200), 0) < 0) {
-		printf("Send failed: %s \n", strerror(errno));
-        return 1;
+	char buffer[1024];
+	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
+	printf("Received: %i\n", received_bytes);
+	printf("Received: %s\n", buffer);
+	if (1) {
+		char *reply = "HTTP/1.1 200 OK\r\n\r\n";
+		send(client_fd, reply, strlen(reply), 0);
 	} else {
-		printf("Response sent successfully\n");
+		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
+	    send(client_fd, reply, strlen(reply), 0);
 	}
-*/	printf("1\n");
-
-
-	char request[1024] = {0};
-
-    // Receive the HTTP request
-    int bytes_received = recv(client_fd, request, sizeof(request) - 1, 0);
-    if (bytes_received < 0) {
-        printf("Receive failed: %s\n", strerror(errno));
-        close(client_fd);
-        close(server_fd);
-        return 1;
-    }
-    request[bytes_received] = '\0'; // Null-terminate the received data
-
-    printf("Received request:\n%s\n", request);
-
-
-
-
-
-	// if we have 404 in the request
-	if (strstr(request, "404") != NULL) {
-        printf("404 path detected\n");
-        if (send(client_fd, response_404, strlen(response_404), 0) < 0) {
-            printf("Send failed: %s\n", strerror(errno));
-        } else {
-            printf("404 response sent successfully\n");
-        }
-    } else {
-        printf("200 path detected\n");
-        if (send(client_fd, response_200, strlen(response_200), 0) < 0) {
-            printf("Send failed: %s\n", strerror(errno));
-        } else {
-            printf("200 response sent successfully\n");
-        }
-    }
-	
-	printf("4\n");
 
 	//cloose the client connection
 	close(client_fd);
-
-	printf("Closing the server\n");
 	close(server_fd);
-	printf("Server closedd\n");
 	return 0;
 }
