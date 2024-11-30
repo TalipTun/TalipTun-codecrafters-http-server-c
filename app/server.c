@@ -56,11 +56,13 @@ int main() {
         printf("Accept failed: %s\n", strerror(errno));
         return 1;
     }
+	/*Received: GET / HTTP/1.1
+	remote: [your_program] Host: localhost:4221*/
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %i\n", received_bytes);
 	printf("Received: %s\n", buffer);
-	if (0) {
+	if (1) {
 		char *reply = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, reply, strlen(reply), 0);
 	} else {
