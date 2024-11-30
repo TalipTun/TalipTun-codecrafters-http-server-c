@@ -86,10 +86,12 @@ int main() {
 	}
 */
 	char request[] = "";
-
-	if (recv(client_fd, request, sizeof(request), 0) < 0) {
+	int response = recv(client_fd, request, sizeof(request), 0);
+	if (response < 0) {
+		printf("response\n");
 		send(client_fd, response_400, strlen(response_200), 0);
     } else { 
+		printf("response\n");
 		send(client_fd, response_200, strlen(response_200), 0);
 	}
 
