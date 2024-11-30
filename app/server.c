@@ -64,19 +64,35 @@ int main() {
     }
 	printf("Client connected\n");
 
-	char response[] =
+	char response_200[] =
         "HTTP/1.1 200 OK\r\n"       // HTTP version and status code
         "Content-Length: 13\r\n"    // Length of the body
         "Content-Type: text/plain\r\n" // Content type
         "\r\n"                      // Blank line to separate headers and body
         "Hello, World!";            // Response body
 
-	if (send(client_fd, response, strlen(response), 0) < 0) {
+	char response_400[] = 
+		"HTTP/1.1 404 Not Found\r\n"   // HTTP version and status code
+        "Content-Type: text/plain\r\n" // Content type
+        "Content-Length: 15\r\n"       // Content length
+        "\r\n"                         // Blank line to separate headers and body
+        "Page Not Found";              // Response body
+
+	if (send(client_fd, response_200, strlen(response_200), 0) < 0) {
 		printf("Send failed: %s \n", strerror(errno));
         return 1;
 	} else {
 		printf("Response sent successfully\n");
 	}
+
+	char request[] = "";
+
+	if (recv(client_fd, request, sizeof(request), 0) < 0) {
+		send(client_fd, response_400, strlen(response_200), 0);
+    } else { 
+		send(client_fd, response_200, strlen(response_200), 0);
+	}
+
 
 	//cloose the client connection
 	close(client_fd);
