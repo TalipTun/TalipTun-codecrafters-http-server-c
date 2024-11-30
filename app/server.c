@@ -71,7 +71,7 @@ int main() {
         "\r\n"                      // Blank line to separate headers and body
         "Hello, World!";            // Response body
 
-	char response_400[] = 
+	char response_404[] = 
 		"HTTP/1.1 404 Not Found\r\n"   // HTTP version and status code
         "Content-Type: text/plain\r\n" // Content type
         "Content-Length: 15\r\n"       // Content length
@@ -88,10 +88,10 @@ int main() {
 	char request[] = "";
 	int response = recv(client_fd, request, sizeof(request), 0);
 	if (response < 0) {
-		printf("%c[]\n",request);
-		send(client_fd, response_400, strlen(response_200), 0);
+		printf("%s\n",request);
+		send(client_fd, response_404, strlen(response_404), 0);
     } else { 
-		printf("%c[]\n",request);
+		printf("%s\n",request);
 		send(client_fd, response_200, strlen(response_200), 0);
 	}
 
