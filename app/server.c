@@ -56,7 +56,7 @@ int main() {
 	printf("Waiting for a client to connect...\n");
 	client_addr_len = sizeof(client_addr);
 	
-	client_fd = (server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
+	client_fd = accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
 
 	if (client_fd < 0) {
         printf("Accept failed: %s\n", strerror(errno));
