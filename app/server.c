@@ -72,8 +72,8 @@ int main() {
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %i\n", received_bytes);
 	printf("Received: %s\n", buffer);
-	int a = strchr(buffer, 'HTTP/1.1');
-	printf("Index of first 'HTTP/1.1' in buffer: %i\n", a);
+	char * a = strchr(buffer, 'HTTP/1.1');
+	printf("Index of first 'HTTP/1.1' in buffer: %c\n", a);
 	if (strstr(buffer, "GET / HTTP/1.1")) {
 		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		send(client_fd, reply, strlen(reply), 0);
