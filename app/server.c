@@ -85,8 +85,26 @@ int main() {
 		printf("Response sent successfully\n");
 	}
 */	printf("1\n");
+
+
 	char request[1024] = {0};
-	recv(client_fd, request, sizeof(request) - 1, 0);
+
+    // Receive the HTTP request
+    int bytes_received = recv(client_fd, request, sizeof(request) - 1, 0);
+    if (bytes_received < 0) {
+        printf("Receive failed: %s\n", strerror(errno));
+        close(client_fd);
+        close(server_fd);
+        return 1;
+    }
+    request[bytes_received] = '\0'; // Null-terminate the received data
+
+    printf("Received request:\n%s\n", request);
+
+
+
+
+
 	// if we have 404 in the request
 	if (strstr(request, "404") != NULL) {
         printf("404 path detected\n");
