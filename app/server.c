@@ -76,7 +76,7 @@ int main() {
 	char *b = strstr(buffer, "/echo/");
 	printf("Index of first 'HTTP/1.1' in buffer: %ld\n", a - buffer);
 	printf("Index of first '/echo/' in buffer: %ld\n", b - buffer);
-	printf("aaaaa %ld\n", (a -buffer) - (b - buffer) - 7);
+	printf("aaaaaa %ld\n", (a -buffer) - (b - buffer) - 7);
 	if (strstr(buffer, "GET / HTTP/1.1")) {
 		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		send(client_fd, reply, strlen(reply), 0);
