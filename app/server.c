@@ -105,6 +105,7 @@ int main() {
 		printf("1\n");
 		char *reply = strcat("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n", substring);
 		printf("reply = %s\n", reply);
+		printf("10\n");
 		send(client_fd, reply, strlen(reply), 0);
 	} else {
 		printf("2\n");
