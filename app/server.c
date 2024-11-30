@@ -10,7 +10,7 @@
 void getString(int pos, int len, int i, char string[])
 {
 
-    char substring[1000];
+    char substring[len + 1];
 
     while (i < len) {
         substring[i] = string[pos + i - 1];
