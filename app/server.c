@@ -77,14 +77,14 @@ int main() {
         "Content-Length: 15\r\n"       // Content length
         "\r\n"                         // Blank line to separate headers and body
         "Page Not Found";              // Response body
-
+/*
 	if (send(client_fd, response_200, strlen(response_200), 0) < 0) {
 		printf("Send failed: %s \n", strerror(errno));
         return 1;
 	} else {
 		printf("Response sent successfully\n");
 	}
-
+*/
 	char request[] = "";
 
 	if (recv(client_fd, request, sizeof(request), 0) < 0) {
