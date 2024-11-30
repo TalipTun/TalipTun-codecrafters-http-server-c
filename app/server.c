@@ -102,16 +102,13 @@ int main() {
 	printf("Received echo: %s\n", substring);
 	printf("3\n");
 	if (strstr(buffer, "GET /echo/")) {
-		printf("1\n");
 		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
-		printf("10\n");
 		size_t len = strlen(reply) + strlen(substring);
 		char *ret = (char*)malloc(len * sizeof(char) + 1);
 		*ret = '\0';
-		printf("------\n");
-		printf("%s", strcat(strcat(ret, reply) ,substring));
-		printf("------\n");
-		send(client_fd, strcat(strcat(ret, reply) ,substring), strlen(strcat(strcat(ret, reply) ,substring)), 0); 
+		char *concatenated_reply = strcat(strcat(ret, reply) ,substring)
+		printf("%s\n", concatenated_reply);
+		send(client_fd, concatenated_reply, strlen(concatenated_reply), 0); 
 	} else {
 		printf("2\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
