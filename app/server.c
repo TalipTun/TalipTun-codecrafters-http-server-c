@@ -84,17 +84,19 @@ int main() {
 	} else {
 		printf("Response sent successfully\n");
 	}
-*/
+*/	printf("1\n");
 	char request[] = "";
 	int response = recv(client_fd, request, sizeof(request), 0);
-	if (response < 0) {
+	if (strstr("200" , request) || response < 0) {
+		printf("2\n");
 		printf("%s\n",request);
 		send(client_fd, response_404, strlen(response_404), 0);
     } else { 
+		printf("3\n");
 		printf("%s\n",request);
 		send(client_fd, response_200, strlen(response_200), 0);
 	}
-
+	printf("4\n");
 
 	//cloose the client connection
 	close(client_fd);
