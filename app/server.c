@@ -108,8 +108,8 @@ int main() {
 		size_t len = strlen(buffer) + strlen(substring);
 		char *ret = (char*)malloc(len * sizeof(char) + 1);
 		*ret = '\0';
-		printf("%s", strcat(strcat(ret, a) ,b))
-		send(client_fd, reply, strlen(reply), 0);
+		printf("%s", strcat(strcat(ret, a) ,b));
+		/* send(client_fd, reply, strlen(reply), 0); */
 	} else {
 		printf("2\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
