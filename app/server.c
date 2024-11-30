@@ -106,7 +106,7 @@ int main() {
 		size_t len = strlen(reply) + strlen(substring);
 		char *ret = (char*)malloc(len * sizeof(char) + 1);
 		*ret = '\0';
-		char *concatenated_reply = strcat(strcat(ret, reply) ,substring)
+		char *concatenated_reply = strcat(strcat(ret, reply) ,substring);
 		printf("%s\n", strcat(strcat(ret, reply) ,substring));
 		printf("-----\n");
 		printf("%s\n", concatenated_reply);
