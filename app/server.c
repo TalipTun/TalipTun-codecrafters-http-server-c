@@ -88,10 +88,12 @@ int main() {
 	char request[] = "";
 	int response = recv(client_fd, request, sizeof(request), 0);
 	if (strstr("404" , request) == NULL || response < 0) {
+		printf("%s\n", strstr(request, "404") ? "Substring found" : "Substring not found");
 		printf("2\n");
 		printf("%s\n",request);
 		send(client_fd, response_404, strlen(response_404), 0);
     } else { 
+		printf("%s\n", strstr(request, "404") ? "Substring found" : "Substring not found");
 		printf("3\n");
 		printf("%s\n",request);
 		send(client_fd, response_200, strlen(response_200), 0);
