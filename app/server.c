@@ -59,7 +59,11 @@ int main() {
 	accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
 	printf("Client connected\n");
 
-	if (send(server_fd, "HTTP/1.1 200 OK\r\n\r\n", strlen("HTTP/1.1 200 OK\r\n\r\n"), 0) < 0) {
+	char response[] = 
+        "HTTP/1.1 200 OK\r\n"      // HTTP version and status code
+	;
+
+	if (send(server_fd, response, strlen(response), 0) < 0) {
 		printf("Send failed: %s \n", strerror(errno));
         return 1;
 	} else {
