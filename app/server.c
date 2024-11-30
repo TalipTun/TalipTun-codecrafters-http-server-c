@@ -74,7 +74,7 @@ int main() {
 	char response_404[] = 
 		"HTTP/1.1 404 Not Found\r\n"   // HTTP version and status code
         "Content-Type: text/plain\r\n" // Content type
-        "Content-Length: 15\r\n"       // Content length
+        "Content-Length: 14\r\n"       // Content length
         "\r\n"                         // Blank line to separate headers and body
         "Page Not Found";              // Response body
 /*
