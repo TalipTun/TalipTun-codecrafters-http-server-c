@@ -100,8 +100,9 @@ int main() {
 	char substring[lengthof_echo + 1];
 	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
 	printf("Received echo: %s\n", substring);
-	if (strstr(buffer, "GET / HTTP/1.1")) {
-		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
+
+	if (strstr(buffer, "GET /echo/")) {
+		char *reply = strcat("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n", substring);
 		send(client_fd, reply, strlen(reply), 0);
 	} else {
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
