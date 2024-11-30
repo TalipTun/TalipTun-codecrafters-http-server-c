@@ -19,6 +19,7 @@ int main() {
 	int server_fd, client_addr_len;
 	struct sockaddr_in client_addr;
 	
+	// Creating socket file descriptor
 	printf("Connecting");
 	server_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_fd == -1) {
@@ -28,6 +29,8 @@ int main() {
 	
 	// Since the tester restarts your program quite often, setting SO_REUSEADDR
 	// ensures that we don't run into 'Address already in use' errors
+
+	// Set socket options to reuse address and port
 	int reuse = 1;
 	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse)) < 0) {
 		printf("SO_REUSEADDR failed: %s \n", strerror(errno));
@@ -55,7 +58,14 @@ int main() {
 	
 	accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
 	printf("Client connected\n");
-	
+
+	if (send(server_fd, "HTTP/1.1 200 OK\r\n\r\n", strlen("HTTP/1.1 200 OK\r\n\r\n"), 0) < 0) {
+		printf("Send failed: %s \n", strerror(errno));
+        return 1;
+	} else {
+		printf("Response sent successfully\n");
+	}
+	printf("Closing the server\n");
 	close(server_fd);
 
 	return 0;
