@@ -73,8 +73,6 @@ int main() {
 
 	if (send(client_fd, response, strlen(response), 0) < 0) {
 		printf("Send failed: %s \n", strerror(errno));
-		close(client_fd);
-		close(server_fd);
         return 1;
 	} else {
 		printf("Response sent successfully\n");
