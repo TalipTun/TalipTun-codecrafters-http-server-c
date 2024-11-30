@@ -83,6 +83,6 @@ int main() {
 
 	printf("Closing the server\n");
 	close(server_fd);
-	printf("Server closed\n");
+	printf("Server closedd\n");
 	return 0;
 }
