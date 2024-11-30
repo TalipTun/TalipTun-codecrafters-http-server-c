@@ -88,17 +88,19 @@ int main() {
 	char request[] = "";
 	recv(client_fd, request, sizeof(request), 0);
 	// if we have 404 in the request
-	if (strstr(request , "404") != NULL) {
-		printf("%s\n", strstr(request, "404") ? "Substring found" : "Substring not found");
-		printf("2\n");
-		printf("%s\n",request);
-		send(client_fd, response_404, strlen(response_404), 0);
-    } else { 
-		printf("3\n");
-		printf("%s\n", strstr(request, "404") ? "Substring found" : "Substring not found");
-		printf("%s\n",request);
-		send(client_fd, response_200, strlen(response_200), 0);
-	}
+	if (strstr(request, "404") != NULL) {
+        printf("404 path detected\n");
+        if (send(client_fd, response_404, strlen(response_404), 0) < 0) {
+            printf("Send failed: %s\n", strerror(errno));
+            return 1;
+        }
+    } else {
+        printf("200 path detected\n");
+        if (send(client_fd, response_200, strlen(response_200), 0) < 0) {
+            printf("Send failed: %s\n", strerror(errno));
+            return 1;
+        }
+    }
 	printf("4\n");
 
 	//cloose the client connection
