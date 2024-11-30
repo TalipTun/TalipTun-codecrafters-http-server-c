@@ -103,9 +103,12 @@ int main() {
 	printf("3\n");
 	if (strstr(buffer, "GET /echo/")) {
 		printf("1\n");
-		char *reply = strcat("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n", substring);
-		printf("reply = %s\n", reply);
+		/*char *reply = strcat("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n", substring); */
 		printf("10\n");
+		size_t len = strlen(buffer) + strlen(substring);
+		char *ret = (char*)malloc(len * sizeof(char) + 1);
+		*ret = '\0';
+		printf("%s", strcat(strcat(ret, a) ,b))
 		send(client_fd, reply, strlen(reply), 0);
 	} else {
 		printf("2\n");
