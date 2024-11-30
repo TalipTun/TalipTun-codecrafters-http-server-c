@@ -60,7 +60,7 @@ int main() {
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %i\n", received_bytes);
 	printf("Received: %s\n", buffer);
-	if (1) {
+	if (0) {
 		char *reply = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, reply, strlen(reply), 0);
 	} else {
