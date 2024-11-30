@@ -86,8 +86,9 @@ int main() {
 	}
 */	printf("1\n");
 	char request[] = "";
-	int response = recv(client_fd, request, sizeof(request), 0);
-	if (strstr(request , "404") != NULL || response < 0) {
+	recv(client_fd, request, sizeof(request), 0);
+	// if we have 404 in the request
+	if (strstr(request , "404") != NULL) {
 		printf("%s\n", strstr(request, "404") ? "Substring found" : "Substring not found");
 		printf("2\n");
 		printf("%s\n",request);
