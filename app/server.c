@@ -16,7 +16,7 @@ int main() {
 	// You can use print statements as follows for debugging, they'll be visible when running tests.
 	printf("Logs from your program will appear here!\n");
 
-	int server_fd, client_addr_len;
+	int server_fd, client_addr_len, client_fd;
 	struct sockaddr_in client_addr;
 	
 	// Creating socket file descriptor
@@ -56,19 +56,33 @@ int main() {
 	printf("Waiting for a client to connect...\n");
 	client_addr_len = sizeof(client_addr);
 	
-	accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
+	client_fd = (server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
+
+	if (client_fd < 0) {
+        printf("Accept failed: %s\n", strerror(errno));
+        return 1;
+    }
 	printf("Client connected\n");
 
-	char response[] = 
-        "HTTP/1.1 200 OK\r\n"      // HTTP version and status code
-	;
+	char response[] =
+        "HTTP/1.1 200 OK\r\n"       // HTTP version and status code
+        "Content-Length: 13\r\n"    // Length of the body
+        "Content-Type: text/plain\r\n" // Content type
+        "\r\n"                      // Blank line to separate headers and body
+        "Hello, World!";            // Response body
 
-	if (send(server_fd, response, strlen(response), 0) < 0) {
+	if (send(client_fd, response, strlen(response), 0) < 0) {
 		printf("Send failed: %s \n", strerror(errno));
+		close(client_fd);
+		close(server_fd);
         return 1;
 	} else {
 		printf("Response sent successfully\n");
 	}
+
+	//cloose the client connection
+	close(client_fd);
+
 	printf("Closing the server\n");
 	close(server_fd);
 
