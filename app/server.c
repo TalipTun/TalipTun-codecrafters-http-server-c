@@ -102,7 +102,7 @@ int main() {
 	printf("Received echo: %s\n", substring);
 	printf("3\n");
 	if (strstr(buffer, "GET /echo/")) {
-		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
+		char *reply = ("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: %s\r\n\r\n", lengthof_echo);
 		size_t len = strlen(reply) + strlen(substring);
 		char *ret = (char*)malloc(len * sizeof(char) + 1);
 		*ret = '\0';
