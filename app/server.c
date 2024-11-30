@@ -7,10 +7,9 @@
 #include <errno.h>
 #include <unistd.h>
 
-void getString(int pos, int len, int i, char string[])
-{
 
-    char substring[len + 1];
+void getString(int pos, int len, int i, char string[], char substring[])
+{
 
     while (i < len) {
         substring[i] = string[pos + i - 1];
@@ -99,7 +98,8 @@ int main() {
 	printf("aaaaaa %ld\n", (a -buffer) - (b - buffer) - 7);
 	int lengthof_echo = (a - buffer) - (b - buffer) - 7;
 	char substring[lengthof_echo + 1];
-	getString(b - buffer + 7, lengthof_echo, 0, buffer);
+	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
+	printf("Received echo: %s\n", substring);
 	if (strstr(buffer, "GET / HTTP/1.1")) {
 		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		send(client_fd, reply, strlen(reply), 0);
