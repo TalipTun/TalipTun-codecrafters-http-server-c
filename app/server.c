@@ -94,6 +94,7 @@ int main() {
 		send(client_fd, response_404, strlen(response_404), 0);
     } else { 
 		printf("3\n");
+		printf("%s\n", strstr(request, "404") ? "Substring found" : "Substring not found");
 		printf("%s\n",request);
 		send(client_fd, response_200, strlen(response_200), 0);
 	}
