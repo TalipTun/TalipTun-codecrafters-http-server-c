@@ -99,7 +99,7 @@ int main() {
 	printf("aaaaaa %ld\n", (a -buffer) - (b - buffer) - 7);
 	int lengthof_echo = (a - buffer) - (b - buffer) - 7;
 	char substring[lengthof_echo + 1];
-	getString(b - buffer + 6, lengthof_echo, 0, buffer);
+	getString(b - buffer + 7, lengthof_echo, 0, buffer);
 	if (strstr(buffer, "GET / HTTP/1.1")) {
 		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		send(client_fd, reply, strlen(reply), 0);
