@@ -7,6 +7,26 @@
 #include <errno.h>
 #include <unistd.h>
 
+void getString(int pos, int len, int i, char string[])
+{
+
+    char substring[1000];
+
+    while (i < len) {
+        substring[i] = string[pos + i - 1];
+        i++;
+    }
+
+    substring[i] = '\0';
+
+    // Print the result
+	printf("------\n");
+    printf(substring);
+    printf("\n");
+	printf("------\n");
+    return 0;
+}
+
 int main() {
 	// Disable output buffering
 	setbuf(stdout, NULL);
@@ -77,6 +97,9 @@ int main() {
 	printf("Index of first 'HTTP/1.1' in buffer: %ld\n", a - buffer);
 	printf("Index of first '/echo/' in buffer: %ld\n", b - buffer);
 	printf("aaaaaa %ld\n", (a -buffer) - (b - buffer) - 7);
+	int lengthof_echo = (a - buffer) - (b - buffer) - 7;
+	char substring[lengthof_echo + 1];
+	getString(b - buffer + 6, lengthof_echo, 0, substring);
 	if (strstr(buffer, "GET / HTTP/1.1")) {
 		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		send(client_fd, reply, strlen(reply), 0);
