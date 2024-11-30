@@ -111,7 +111,7 @@ int main() {
 		printf("------\n");
 		printf("%s", strcat(strcat(ret, reply) ,substring));
 		printf("------\n");
-		/* send(client_fd, reply, strlen(reply), 0); */
+		send(client_fd, strcat(strcat(ret, reply) ,substring), strlen(strcat(strcat(ret, reply) ,substring)), 0); 
 	} else {
 		printf("2\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
