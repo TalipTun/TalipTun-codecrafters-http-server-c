@@ -85,8 +85,8 @@ int main() {
 		printf("Response sent successfully\n");
 	}
 */	printf("1\n");
-	char request[] = "";
-	recv(client_fd, request, sizeof(request), 0);
+	char request[1024] = {0};
+	recv(client_fd, request, sizeof(request) - 1, 0);
 	// if we have 404 in the request
 	if (strstr(request, "404") != NULL) {
         printf("404 path detected\n");
