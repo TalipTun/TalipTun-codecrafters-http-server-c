@@ -112,7 +112,6 @@ int main() {
 		printf("second step = %i\n", filename);
 		if (filename != NULL) {
 			// Move past the '/' to get the filename
-			filename++;
 			printf("Extracted part: %s\n", filename);
 		} else {
 			printf("No '/' found in the string.\n");
