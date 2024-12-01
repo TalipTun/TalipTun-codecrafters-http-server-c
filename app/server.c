@@ -103,11 +103,18 @@ int main() {
 	} else if (strncmp(path, "/files/", 7) == 0) {
 		printf("first step\n");
 		char response[1024];
-		//FILE* fp = fopen(path, "r");
+		FILE* fp = fopen(path, "r");
+		if (fp == NULL) { 
+			printf("File Not Found!\n"); 
+			char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
+			send(client_fd, reply, strlen(reply), 0);
+    	} 
+		fseek(fp, 0, SEEK_END);
+		long int res = ftell(fp); 
 		sprintf(response,
 			"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: "
 			"%ld\r\n\r\n%s",
-			strlen(path) - 4, path);
+			res, path);
 	}else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
