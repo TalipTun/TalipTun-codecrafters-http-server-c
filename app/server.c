@@ -106,7 +106,7 @@ int main() {
 		send(client_fd, response, strlen(response), 0);
 	} else {
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
-	    send(client_fd, reply, strlen(reply), 0);
+	    send(client_fd, reply, strlen(reply) - 4, 0);
 	}
 
 	//cloose the client connection
