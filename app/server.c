@@ -119,7 +119,6 @@ int main() {
 		}
 		printf("%s\r\n", filename);
 		char response[1024];
-		printf("k\n");
 		FILE* fp = fopen(filename, "r");
 		if (fp == NULL) {
 			printf("File Not Found!\n");
