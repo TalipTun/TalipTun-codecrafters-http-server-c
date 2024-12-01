@@ -14,7 +14,7 @@ int main() {
 
 	int server_fd, client_addr_len, client_fd;
 	struct sockaddr_in client_addr;
-	
+	printf("Server is running...\n");
 	// Creating socket file descriptor
 	server_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (server_fd == -1) {
@@ -41,13 +41,15 @@ int main() {
 		printf("Bind failed: %s \n", strerror(errno));
 		return 1;
 	}
+
+    printf("Server is listening...\n");
 	
 	int connection_backlog = 5;
 	if (listen(server_fd, connection_backlog) != 0) {
 		printf("Listen failed: %s \n", strerror(errno));
 		return 1;
 	}
-	
+	printf("DD\n");
 	client_addr_len = sizeof(client_addr);
 	
 	client_fd = accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
@@ -56,7 +58,7 @@ int main() {
         printf("Acceptt failed: %s\n", strerror(errno));
         return 1;
     }
-
+	
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	char *path = strtok(buffer, " ");
