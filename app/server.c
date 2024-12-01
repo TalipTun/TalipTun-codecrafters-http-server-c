@@ -109,8 +109,9 @@ int main() {
 	} else if (strncmp(path, "/files", 6) == 0) {
 		printf("first step\n");
 		char *filename = strrchr(path, '/');
-		printf("second step = %i\n", filename);
+		printf("second step = %s\n", filename);
 		if (filename != NULL) {
+			filename
 			// Move past the '/' to get the filename
 			printf("Extracted part: %s\n", filename);
 		} else {
