@@ -117,6 +117,7 @@ int main() {
 			"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: "
 			"%ld\r\n\r\n%s",
 			res, path);
+		send(client_fd, response, strlen(response), 0);
 	}else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
