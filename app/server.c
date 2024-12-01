@@ -95,7 +95,7 @@ int main() {
 		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
-		for (int i = 0; i < 5; i++) { path = strtok(NULL, " "); }
+		for (int i = 0; i < 3; i++) { path = strtok(NULL, " "); }
 		printf("aa\n");
 		printf("%s\n", path);
 		/*
