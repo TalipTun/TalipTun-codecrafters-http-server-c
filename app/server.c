@@ -103,7 +103,7 @@ int main() {
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
-            strlen(path), path);
+            strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else {
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
