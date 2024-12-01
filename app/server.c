@@ -72,7 +72,9 @@ int main() {
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
   	path = strtok(NULL, " ");
+	printf("--------");
 	printf("%c\n", path);
+	printf("--------");
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
 		char *echo_string = path + 6;
@@ -97,6 +99,12 @@ int main() {
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files/", 7) == 0) {
 		printf("first step\n");
+		char response[1024];
+		//FILE* fp = fopen(path, "r");
+		sprintf(response,
+			"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: "
+			"%ld\r\n\r\n%s",
+			strlen(path) - 4, path);
 	}else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
