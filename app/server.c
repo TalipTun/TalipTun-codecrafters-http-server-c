@@ -7,25 +7,6 @@
 #include <errno.h>
 #include <unistd.h>
 
-
-void getString(int pos, int len, int i, char string[], char substring[])
-{
-
-    while (i < len) {
-        substring[i] = string[pos + i - 1];
-        i++;
-    }
-
-    substring[i] = '\0';
-
-    // Print the result
-	printf("------\n");
-    printf(substring);
-    printf("\n");
-	printf("------\n");
-    return 0;
-}
-
 int main() {
 	// Disable output buffering
 	setbuf(stdout, NULL);
