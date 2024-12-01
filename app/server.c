@@ -71,6 +71,9 @@ int main() {
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
+	printf("--------");
+	printf("%c\n", path);
+	printf("--------");
   	path = strtok(NULL, " ");
 	printf("--------");
 	printf("%c\n", path);
