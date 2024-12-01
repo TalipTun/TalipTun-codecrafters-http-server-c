@@ -114,6 +114,7 @@ int main(int argc, char **argv) {
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
+		printf("33333\n");
 		char response[1024];
 		char *file = strchr(path + 1, '/');
 		if (file != NULL) {
@@ -129,6 +130,7 @@ int main(int argc, char **argv) {
 				send(client_fd, response, strlen(response), 0);
 			} 
 		} else {
+			printf("444444\n");
 			char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    	send(client_fd, reply, strlen(reply), 0);
 		}
