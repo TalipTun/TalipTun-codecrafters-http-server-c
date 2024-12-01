@@ -110,10 +110,17 @@ int main(int argc, char **argv) {
 		char response[1024];
 		printf("%s\n", path);
 		printf("%i\n",strlen(path));
+		int counter = 0;
+		for (int i = 0; i < strlen(path); i++) {
+			char current_letter = path[i];
+			if (current_letter != NULL || current_letter != " ") {
+				counter++;
+			}
+		}
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
-            strlen(path) - 4, path);
+            counter, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
 		printf("33333\n");
