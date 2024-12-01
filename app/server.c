@@ -64,7 +64,7 @@ int main() {
       perror("fork fail");
       exit(1);
     } else {
-		printf("i\n", p);
+		printf("%i\n", p);
 	}	
 
 	char buffer[1024];
