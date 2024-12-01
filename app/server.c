@@ -58,10 +58,7 @@ int main() {
     if(p<0){
       perror("fork fail");
       exit(1);
-    } else {
-		printf("%d\n", p);
-		printf("aaaaaa\n");
-	}	
+    }
 
 	client_fd = accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
 
