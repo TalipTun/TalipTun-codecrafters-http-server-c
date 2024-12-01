@@ -72,11 +72,11 @@ int main() {
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
 	printf("--------");
-	printf("%c\n", buffer);
+	printf("%s\n", buffer);
 	printf("--------");
   	path = strtok(NULL, " ");
 	printf("--------");
-	printf("%c\n", path);
+	printf("%s\n", path);
 	printf("--------");
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
