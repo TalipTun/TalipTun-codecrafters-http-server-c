@@ -118,9 +118,11 @@ int main(int argc, char **argv) {
 		char response[1024];
 		char *file = strchr(path + 1, '/');
 		if (file != NULL) {
+			printf("444444\n");
 			char *filepath = strcat(directory, file);
 			FILE *fd = fopen(filepath, "r");
 			if (fd != NULL) {
+				printf("555555\n");
 				char *current_buffer[BUFFER_SIZE] = {0};
 				int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
 				sprintf(response, 
@@ -130,7 +132,7 @@ int main(int argc, char **argv) {
 				send(client_fd, response, strlen(response), 0);
 			} 
 		} else {
-			printf("444444\n");
+			printf("66666\n");
 			char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    	send(client_fd, reply, strlen(reply), 0);
 		}
