@@ -7,6 +7,9 @@
 #include <errno.h>
 #include <unistd.h>
 
+#define BUFFER_SIZE 4098
+
+
 int main(int argc, char **argv) {
 	char *directory = NULL;
 	if (argc >= 2 && (strncmp(argv[1], "--directory", 11) == 0)) {
@@ -116,7 +119,16 @@ int main(int argc, char **argv) {
 		printf("--------");
 		printf("%s\n", filepath);
 		printf("--------");
-		
+		FILE *fd = fopen(filepath, "r");
+		char *current_buffer[BUFFER_SIZE] = {0};
+		int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
+
+		char *format = "HTTP/1.1 200 OK\r\n"
+                       "Content-Type: application/octet-stream\r\n"
+                       "Content-Length: %zu\r\n\r\n%s",
+					   bytes_read, current_buffer;
+
+        send(client_fd, format, strlen(format), 0);
 	}else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
