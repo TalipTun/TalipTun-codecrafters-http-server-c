@@ -110,7 +110,13 @@ int main() {
 		printf("first step\n");
 		int filename = strrchr(path, '/');
 		printf("second step = %i\n", filename);
-		filename++;
+		if (filename != NULL) {
+			// Move past the '/' to get the filename
+			filename++;
+			printf("Extracted part: %s\n", filename);
+		} else {
+			printf("No '/' found in the string.\n");
+		}
 		printf("%s\r\n", filename);
 		char response[1024];
 		printf("k\n");
