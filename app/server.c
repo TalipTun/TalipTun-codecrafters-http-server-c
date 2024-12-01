@@ -97,10 +97,12 @@ int main() {
 	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
 	*/
 	printf("Received echo: %s\n", substring);
-	char *echo_string = path + 6;
+	
 	char *path = strtok(buffer, " ");
   	path = strtok(NULL, " ");
-	if (strstr(buffer, "GET /echo/")) {
+
+	if (strncmp(path, "/echo/", 6) == 0) {
+		char *echo_string = path + 6;
 		char response[1024];
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
