@@ -97,31 +97,28 @@ int main() {
 	printf("Received echo: %s\n", substring);
 	if (strstr(buffer, "GET /echo/")) {
 		char response[1024];
-		char reply[] = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
-		char *c = strstr(reply, "Content-Length: ");
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
             strlen(substring), substring);
-		// this works don't touch it
-		/*
-		size_t len = strlen(reply) + strlen(substring);
-		char *ret = (char*)malloc(len * sizeof(char) + 1);
-		*ret = '\0';
-		char *concatenated_reply = strcat(strcat(ret, reply) ,substring);
-		printf("%s\n", strcat(strcat(ret, reply) ,substring));
-		printf("-----\n");
-		printf("%s\n", concatenated_reply);
-		*/
 		send(client_fd, response, strlen(response), 0); 
+	} else if (strcmp(path, "/") == 0) {
+		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
+		send(client_fd, response, strlen(response), 0);
 	} else {
-		printf("2\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    send(client_fd, reply, strlen(reply), 0);
 	}
-	printf("4\n");
+
 	//cloose the client connection
 	close(client_fd);
 	close(server_fd);
 	return 0;
 }
+
+
+/*
+You must reply 200 OK to /
+You must reply 200 OK to /echo/abc and return content
+You must reply 404 Not Found to anything else
+*/
