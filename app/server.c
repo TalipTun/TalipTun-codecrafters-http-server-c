@@ -49,7 +49,6 @@ int main() {
 		printf("Listen failed: %s \n", strerror(errno));
 		return 1;
 	}
-	printf("DD\n");
 	client_addr_len = sizeof(client_addr);
 	// here
 	fork();
@@ -70,6 +69,7 @@ int main() {
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
+	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
   	path = strtok(NULL, " ");
 	printf("1\n");
