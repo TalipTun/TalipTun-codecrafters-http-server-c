@@ -113,7 +113,7 @@ int main() {
     	} 
 		*/
 		printf("ll\n");
-		fseek(fp, 0, SEEK_END);
+		fseek(fp, 0L, SEEK_END);
 		printf("şş\n");
 		long int res = ftell(fp); 
 		printf("tt\n");
