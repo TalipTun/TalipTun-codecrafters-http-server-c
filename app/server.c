@@ -99,7 +99,7 @@ int main() {
 		printf("aa\n");
 		printf("%s\n", path);
 		char response[1024];
-		printf("%c\n", strlen(path));
+		printf("%zu\n", strlen(path));
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
