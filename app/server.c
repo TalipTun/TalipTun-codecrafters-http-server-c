@@ -72,7 +72,7 @@ int main() {
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
 	printf("--------");
-	printf("%c\n", path);
+	printf("%c\n", buffer);
 	printf("--------");
   	path = strtok(NULL, " ");
 	printf("--------");
