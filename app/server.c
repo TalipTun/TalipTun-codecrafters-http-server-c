@@ -95,6 +95,7 @@ int main() {
 		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
+		char *user_agent = path + 11;	
 		for (int i = 0; i < 3; i++) { path = strtok(NULL, " "); }
 		printf("aa\n");
 		printf("%s\n", path);
@@ -102,8 +103,8 @@ int main() {
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
-            strlen(path), path);
-		send(client_fd, response, strlen(response) - 4, 0);
+            strlen(user_agent), user_agent);
+		send(client_fd, response, strlen(response), 0);
 	} else {
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    send(client_fd, reply, strlen(reply), 0);
