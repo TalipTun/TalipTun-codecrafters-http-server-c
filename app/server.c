@@ -98,6 +98,7 @@ int main() {
 	if (strstr(buffer, "GET /echo/")) {
 		char reply[] = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		char *c = strstr(reply, "Content-Length: ");
+		printf("ğğğğğ\n");
 		printf(c + 14, "%d", strlen(substring));
 
 		// this works don't touch it
