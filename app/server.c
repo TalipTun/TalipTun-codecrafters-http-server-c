@@ -95,9 +95,7 @@ int main() {
 	int lengthof_echo = (a - buffer) - (b - buffer) - 7;
 	char substring[lengthof_echo + 1];
 	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
-	*/
-	printf("Received echo: %s\n", substring);
-	
+	*/	
 	char *path = strtok(buffer, " ");
   	path = strtok(NULL, " ");
 
