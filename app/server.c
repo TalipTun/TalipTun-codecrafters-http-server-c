@@ -105,7 +105,7 @@ int main() {
 	} else if (strncmp(path, "/files/", 7) == 0) {
 		printf("first step\n");
 		char response[1024];
-		printf("kk\n");
+		printf("k\n");
 		FILE* fp = fopen(path, "r");
 		if (fp == NULL) {
 			printf("File Not Found!\n");
