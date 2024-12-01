@@ -105,7 +105,7 @@ int main() {
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
-            strlen(substring), substring);
+            strlen(echo_string), echo_string);
 		send(client_fd, response, strlen(response), 0); 
 	} else if (strcmp(path, "/") == 0) {
 		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
