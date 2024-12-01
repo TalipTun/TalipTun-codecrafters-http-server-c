@@ -96,15 +96,15 @@ int main() {
 	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
 	printf("Received echo: %s\n", substring);
 	if (strstr(buffer, "GET /echo/")) {
+		char response[1024];
 		char reply[] = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		char *c = strstr(reply, "Content-Length: ");
-		printf("ğğğğğ\n");
-		printf("%c\n", c[16]);
-		c[16] = lengthof_echo;
-		printf("%c\n", c[16]);
-		printf("ğğğğğ\n");
-
+		sprintf(response,
+            "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
+            "%ld\r\n\r\n%s",
+            strlen(substring), substring);
 		// this works don't touch it
+		/*
 		size_t len = strlen(reply) + strlen(substring);
 		char *ret = (char*)malloc(len * sizeof(char) + 1);
 		*ret = '\0';
@@ -112,6 +112,7 @@ int main() {
 		printf("%s\n", strcat(strcat(ret, reply) ,substring));
 		printf("-----\n");
 		printf("%s\n", concatenated_reply);
+		*/
 		send(client_fd, concatenated_reply, strlen(concatenated_reply), 0); 
 	} else {
 		printf("2\n");
