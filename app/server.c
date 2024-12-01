@@ -113,7 +113,7 @@ int main() {
 		printf("-----\n");
 		printf("%s\n", concatenated_reply);
 		*/
-		send(client_fd, concatenated_reply, strlen(concatenated_reply), 0); 
+		send(client_fd, response, strlen(response), 0); 
 	} else {
 		printf("2\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
