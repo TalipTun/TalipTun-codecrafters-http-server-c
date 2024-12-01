@@ -125,11 +125,13 @@ int main(int argc, char **argv) {
 				printf("555555\n");
 				char *current_buffer[BUFFER_SIZE] = {0};
 				int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
-				sprintf(response, 
-				"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
-				bytes_read, current_buffer);
+				if (bytes_read > 0) {
+					sprintf(response, 
+					"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
+					bytes_read, current_buffer);
 
-				send(client_fd, response, strlen(response), 0);
+					send(client_fd, response, strlen(response), 0);
+				}
 			} else {
 					printf("66666\n");
 					char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
