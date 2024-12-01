@@ -107,10 +107,13 @@ int main() {
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
+		int filename = strrchr(path, '/');
+		filename++;
+		printf("%s\r\n", filename);
 		printf("first step\n");
 		char response[1024];
 		printf("k\n");
-		FILE* fp = fopen(path, "r");
+		FILE* fp = fopen(filename, "r");
 		if (fp == NULL) {
 			printf("File Not Found!\n");
 		}
