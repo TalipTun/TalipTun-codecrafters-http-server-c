@@ -119,7 +119,9 @@ int main() {
 		}
 		printf("%s\r\n", filename);
 		char response[1024];
-		FILE* fp = fopen(path, "r");
+		char *filename2 = strcat(path, ".txt");
+		printf("Updated filename: %s\n", filename2);
+		FILE* fp = fopen(filename2, "r");
 		if (fp == NULL) {
 			printf("File Not Found!\n");
 		}
