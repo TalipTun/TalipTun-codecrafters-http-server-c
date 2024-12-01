@@ -116,18 +116,22 @@ int main(int argc, char **argv) {
 	} else if (strncmp(path, "/files", 6) == 0) {
 		char response[1024];
 		char *file = strchr(path + 1, '/');
-		char *filepath = strcat(directory, file);
-		printf("--------");
-		printf("%s\n", filepath);
-		printf("--------");
-		FILE *fd = fopen(filepath, "r");
-		char *current_buffer[BUFFER_SIZE] = {0};
-		int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
-		sprintf(response, 
-		"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
-		bytes_read, current_buffer);
+		if (file != NULL) {
+			char *filepath = strcat(directory, file);
+			FILE *fd = fopen(filepath, "r");
+			if (fd != NULL) {
+				char *current_buffer[BUFFER_SIZE] = {0};
+				int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
+				sprintf(response, 
+				"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
+				bytes_read, current_buffer);
 
-        send(client_fd, response, strlen(response), 0);
+				send(client_fd, response, strlen(response), 0);
+			} 
+		} else {
+			char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
+	    	send(client_fd, reply, strlen(reply), 0);
+		}
 	}else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
