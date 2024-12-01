@@ -75,27 +75,9 @@ int main() {
         printf("Accept failed: %s\n", strerror(errno));
         return 1;
     }
-	/*Received: GET / HTTP/1.1
-	remote: [your_program] Host: localhost:4221
-	expected code 200, got 404*/
-	/*remote: [your_program] Received: GET /pear HTTP/1.1
-	remote: [your_program] Host: localhost:4221
-	remote: [your_program] 
-	remote: [your_program] 
-	remote: [tester::#IH0] Expected status code 404, got 200
-	remote: [tester::#IH0] Test failed
-	10th index*/
-
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
-	/*
-	char *a = strstr(buffer, "HTTP/1.1");
-	char *b = strstr(buffer, "/echo/");
-	int lengthof_echo = (a - buffer) - (b - buffer) - 7;
-	char substring[lengthof_echo + 1];
-	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
-	*/	
 	char *path = strtok(buffer, " ");
   	path = strtok(NULL, " ");
 
@@ -120,10 +102,3 @@ int main() {
 	close(server_fd);
 	return 0;
 }
-
-
-/*
-You must reply 200 OK to /
-You must reply 200 OK to /echo/abc and return content
-You must reply 404 Not Found to anything else
-*/
