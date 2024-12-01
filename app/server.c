@@ -107,10 +107,11 @@ int main() {
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
+		printf("first step\n");
 		int filename = strrchr(path, '/');
+		printf("second step = %i\n", filename);
 		filename++;
 		printf("%s\r\n", filename);
-		printf("first step\n");
 		char response[1024];
 		printf("k\n");
 		FILE* fp = fopen(filename, "r");
