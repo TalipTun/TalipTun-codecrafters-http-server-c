@@ -100,6 +100,8 @@ int main() {
 		char *c = strstr(reply, "Content-Length: ");
 		printf("ğğğğğ\n");
 		printf("%c\n", c[16]);
+		c[16] = lengthof_echo;
+		printf("%c\n", c[16]);
 		printf("ğğğğğ\n");
 
 		// this works don't touch it
