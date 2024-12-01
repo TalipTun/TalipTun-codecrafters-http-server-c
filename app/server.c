@@ -7,7 +7,11 @@
 #include <errno.h>
 #include <unistd.h>
 
-int main() {
+int main(int argc, char **argv) {
+	char *directory = NULL;
+	if (argc >= 2 && (strncmp(argv[1], "--directory", 11) == 0)) {
+		directory = argv[2];
+	}
 	// Disable output buffering
 	setbuf(stdout, NULL);
  	setbuf(stderr, NULL);
@@ -107,46 +111,8 @@ int main() {
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
-		printf("first step\n");
-		char *filename = strrchr(path, '/');
-		printf("second step = %s\n", filename);
-		if (filename != NULL) {
-			filename++;
-			// Move past the '/' to get the filename
-			printf("Extracted part: %s\n", filename);
-		} else {
-			printf("No '/' found in the string.\n");
-		}
-		printf("%s\r\n", filename);
-		char response[1024];
-		char *filename2 = strcat(path, ".txt");
-		printf("Updated filename: %s\n", filename2);
-		FILE* fp = fopen(filename2, "r");
-		if (fp == NULL) {
-			printf("File Not Found!\n");
-		}
-		printf("Path: %s\n", path);
-		/*
-		if (fp == NULL) { 
-			printf("File Not Found!\n"); 
-			char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
-			send(client_fd, reply, strlen(reply), 0);
-    	} 
-		*/
-		printf("ll\n");
-		if (fseek(fp, 0L, SEEK_END) != 0) {
-			printf("Error seeking to end of file.\n");
-		}
-		fseek(fp, 0L, SEEK_END);
-		printf("şş\n");
-		long int res = ftell(fp); 
-		printf("tt\n");
-		sprintf(response,
-			"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: "
-			"%ld\r\n\r\n%s",
-			res, path);
-		printf("yy\n");
-		send(client_fd, response, strlen(response), 0);
+		char *filepath = strcat(directory, file);
+		
 	}else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
