@@ -113,14 +113,14 @@ int main(int argc, char **argv) {
 		int counter = 0;
 		for (int i = 0; i < strlen(path); i++) {
 			char current_letter = path[i];
-			if (current_letter != NULL || current_letter != " ") {
+			if (current_letter != NULL || current_letter != " " || current_letter != "n" || current_letter!= "r") {
 				counter++;
 			}
 		}
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
-            counter, path);
+            counter - 1, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
 		printf("33333\n");
