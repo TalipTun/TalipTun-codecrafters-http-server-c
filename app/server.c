@@ -59,12 +59,12 @@ int main() {
         return 1;
     }
 
-	int p = fork();
+	pid_t  p = fork();
     if(p<0){
       perror("fork fail");
       exit(1);
     } else {
-		printf("%i\n", p);
+		printf("%d\n", p);
 	}	
 
 	char buffer[1024];
