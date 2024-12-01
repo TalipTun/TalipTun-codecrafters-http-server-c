@@ -51,14 +51,22 @@ int main() {
 	}
 	printf("DD\n");
 	client_addr_len = sizeof(client_addr);
-	
+	// here
 	client_fd = accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
 
 	if (client_fd < 0) {
         printf("Acceptt failed: %s\n", strerror(errno));
         return 1;
     }
-	
+
+	int p = fork();
+    if(p<0){
+      perror("fork fail");
+      exit(1);
+    } else {
+		printf("i\n", p);
+	}	
+
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	char *path = strtok(buffer, " ");
