@@ -111,7 +111,11 @@ int main(int argc, char **argv) {
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
+		char *file = strchr(path + 1, '/');
 		char *filepath = strcat(directory, file);
+		printf("--------");
+		printf("%s\n", filepath);
+		printf("--------");
 		
 	}else {
 		printf("5\n");
