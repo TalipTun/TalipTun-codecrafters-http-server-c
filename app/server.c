@@ -111,7 +111,7 @@ int main() {
 		char *filename = strrchr(path, '/');
 		printf("second step = %s\n", filename);
 		if (filename != NULL) {
-			filename
+			filename++;
 			// Move past the '/' to get the filename
 			printf("Extracted part: %s\n", filename);
 		} else {
