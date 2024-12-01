@@ -114,6 +114,7 @@ int main(int argc, char **argv) {
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
+		char response[1024];
 		char *file = strchr(path + 1, '/');
 		char *filepath = strcat(directory, file);
 		printf("--------");
@@ -128,7 +129,11 @@ int main(int argc, char **argv) {
                        "Content-Length: %zu\r\n\r\n%s",
 					   bytes_read, current_buffer;
 
-        send(client_fd, format, strlen(format), 0);
+		sprintf(response, 
+		"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
+		bytes_read, current_buffer);
+
+        send(client_fd, response, strlen(response), 0);
 	}else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
