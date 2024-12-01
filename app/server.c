@@ -49,6 +49,9 @@ int main() {
 		printf("Listen failed: %s \n", strerror(errno));
 		return 1;
 	}
+
+	printf("Waiting for new connections...\n");
+
 	client_addr_len = sizeof(client_addr);
 	// here
 	fork();
@@ -59,6 +62,8 @@ int main() {
       exit(1);
     }
 
+	printf("Client connected...\n");
+
 	client_fd = accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
 
 	if (client_fd < 0) {
@@ -66,12 +71,12 @@ int main() {
         return 1;
     }
 
+	printf("Received client request...\n");
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
-	/*
 	printf("--------");
 	printf("%s\n", buffer);
 	printf("--------");
@@ -79,7 +84,6 @@ int main() {
 	printf("--------");
 	printf("%s\n", path);
 	printf("--------");
-	*/
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
 		char *echo_string = path + 6;
@@ -102,7 +106,7 @@ int main() {
             "%ld\r\n\r\n%s",
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
-	} else if (strncmp(path, "/files/", 7) == 0) {
+	} else if (strncmp(path, "/files", 6) == 0) {
 		printf("first step\n");
 		char response[1024];
 		printf("k\n");
