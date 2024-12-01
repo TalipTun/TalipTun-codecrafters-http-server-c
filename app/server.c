@@ -103,6 +103,7 @@ int main() {
 	} else if (strncmp(path, "/files/", 7) == 0) {
 		printf("first step\n");
 		char response[1024];
+		printf("kk\n");
 		FILE* fp = fopen(path, "r");
 		/*
 		if (fp == NULL) { 
@@ -111,12 +112,16 @@ int main() {
 			send(client_fd, reply, strlen(reply), 0);
     	} 
 		*/
+		printf("ll\n");
 		fseek(fp, 0, SEEK_END);
+		printf("şş\n");
 		long int res = ftell(fp); 
+		printf("tt\n");
 		sprintf(response,
 			"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: "
 			"%ld\r\n\r\n%s",
 			res, path);
+		printf("yy\n");
 		send(client_fd, response, strlen(response), 0);
 	}else {
 		printf("5\n");
