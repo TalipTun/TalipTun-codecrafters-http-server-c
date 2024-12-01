@@ -123,12 +123,6 @@ int main(int argc, char **argv) {
 		FILE *fd = fopen(filepath, "r");
 		char *current_buffer[BUFFER_SIZE] = {0};
 		int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
-
-		char *format = "HTTP/1.1 200 OK\r\n"
-                       "Content-Type: application/octet-stream\r\n"
-                       "Content-Length: %zu\r\n\r\n%s",
-					   bytes_read, current_buffer;
-
 		sprintf(response, 
 		"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
 		bytes_read, current_buffer);
