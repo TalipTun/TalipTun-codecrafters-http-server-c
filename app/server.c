@@ -99,7 +99,7 @@ int main() {
 		char reply[] = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
 		char *c = strstr(reply, "Content-Length: ");
 		printf("ğğğğğ\n");
-		printf("%c\n" ,reply[c + 16]);
+		printf("%c\n", c[16]);
 		printf("ğğğğğ\n");
 
 		// this works don't touch it
