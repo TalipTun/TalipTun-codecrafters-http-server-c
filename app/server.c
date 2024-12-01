@@ -130,13 +130,13 @@ int main(int argc, char **argv) {
 				bytes_read, current_buffer);
 
 				send(client_fd, response, strlen(response), 0);
+			} else {
+					printf("66666\n");
+					char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
+					send(client_fd, reply, strlen(reply), 0);
 			} 
-		} else {
-			printf("66666\n");
-			char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
-	    	send(client_fd, reply, strlen(reply), 0);
-		}
-	}else {
+		} 
+	} else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    send(client_fd, reply, strlen(reply), 0);
