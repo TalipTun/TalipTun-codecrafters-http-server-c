@@ -98,10 +98,13 @@ int main() {
 		for (int i = 0; i < 3; i++) { path = strtok(NULL, " "); }
 		printf("aa\n");
 		printf("%s\n", path);
-		/*
 		char response[1024];
+		sprintf(response,
+            "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
+            "%ld\r\n\r\n%s",
+            strlen(path), path);
+		printf("Response: %s\n", response);
 		send(client_fd, response, strlen(response), 0);
-		*/
 	} else {
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    send(client_fd, reply, strlen(reply), 0);
