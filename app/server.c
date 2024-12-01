@@ -80,7 +80,9 @@ int main() {
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	char *path = strtok(buffer, " ");
   	path = strtok(NULL, " ");
+	printf("1\n");
 	if (strncmp(path, "/echo/", 6) == 0) {
+		printf("2\n");
 		char *echo_string = path + 6;
 		char response[1024];
 		sprintf(response,
@@ -89,10 +91,11 @@ int main() {
             strlen(echo_string), echo_string);
 		send(client_fd, response, strlen(response), 0); 
 	} else if (strcmp(path, "/") == 0) {
-		printf("a\n");
+		printf("3\n");
 		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
+		printf("4\n");
 		for (int i = 0; i < 3; i++) { path = strtok(NULL, " "); }
 		char response[1024];
 		sprintf(response,
@@ -101,10 +104,11 @@ int main() {
             strlen(path) - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else {
+		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    send(client_fd, reply, strlen(reply), 0);
 	}
-
+	printf("6\n");
 	//cloose the client connection
 	close(client_fd);
 	close(server_fd);
