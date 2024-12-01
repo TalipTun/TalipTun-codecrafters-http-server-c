@@ -89,6 +89,7 @@ int main() {
             strlen(echo_string), echo_string);
 		send(client_fd, response, strlen(response), 0); 
 	} else if (strcmp(path, "/") == 0) {
+		printf("a\n");
 		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
