@@ -108,6 +108,8 @@ int main(int argc, char **argv) {
 		printf("4\n");
 		for (int i = 0; i < 3; i++) { path = strtok(NULL, " "); }
 		char response[1024];
+		printf("%s\n", path);
+		printf("%i\n",strlen(path));
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
