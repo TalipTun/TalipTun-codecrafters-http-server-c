@@ -89,26 +89,18 @@ int main() {
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
-	printf("Received: %i\n", received_bytes);
-	printf("Received: %s\n", buffer);
 	char *a = strstr(buffer, "HTTP/1.1");
 	char *b = strstr(buffer, "/echo/");
-	printf("Index of first 'HTTP/1.1' in buffer: %ld\n", a - buffer);
-	printf("Index of first '/echo/' in buffer: %ld\n", b - buffer);
-	printf("aaaaaa %ld\n", (a -buffer) - (b - buffer) - 7);
 	int lengthof_echo = (a - buffer) - (b - buffer) - 7;
 	char substring[lengthof_echo + 1];
 	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
 	printf("Received echo: %s\n", substring);
-	printf("3\n");
 	if (strstr(buffer, "GET /echo/")) {
-		char *reply = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
-		reply = snprintf(reply, strlen(reply), "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: %s\r\n\r\n", lengthof_echo);
-		printf("-----1\n");
+		char reply[] = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n";
+		char *c = strstr(reply, "Content-Length: ");
+		printf(c + 14, "%d", strlen(substring));
 
-		printf("%s\n", reply);
-
-		printf("-----1\n");
+		// this works don't touch it
 		size_t len = strlen(reply) + strlen(substring);
 		char *ret = (char*)malloc(len * sizeof(char) + 1);
 		*ret = '\0';
