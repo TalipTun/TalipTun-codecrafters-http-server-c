@@ -120,7 +120,7 @@ int main(int argc, char **argv) {
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
-            counter - 1, path);
+            counter - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
 		printf("33333\n");
