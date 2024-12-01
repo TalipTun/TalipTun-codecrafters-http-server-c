@@ -89,12 +89,17 @@ int main() {
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
+	/*
 	char *a = strstr(buffer, "HTTP/1.1");
 	char *b = strstr(buffer, "/echo/");
 	int lengthof_echo = (a - buffer) - (b - buffer) - 7;
 	char substring[lengthof_echo + 1];
 	getString(b - buffer + 7, lengthof_echo, 0, buffer, substring);
+	*/
 	printf("Received echo: %s\n", substring);
+	char *echo_string = path + 6;
+	char *path = strtok(buffer, " ");
+  	path = strtok(NULL, " ");
 	if (strstr(buffer, "GET /echo/")) {
 		char response[1024];
 		sprintf(response,
