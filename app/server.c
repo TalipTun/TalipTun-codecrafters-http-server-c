@@ -108,7 +108,7 @@ int main() {
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
 		printf("first step\n");
-		int filename = strrchr(path, '/');
+		char *filename = strrchr(path, '/');
 		printf("second step = %i\n", filename);
 		if (filename != NULL) {
 			// Move past the '/' to get the filename
