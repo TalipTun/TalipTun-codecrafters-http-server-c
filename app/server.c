@@ -71,6 +71,7 @@ int main() {
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
+	/*
 	printf("--------");
 	printf("%s\n", buffer);
 	printf("--------");
@@ -78,6 +79,7 @@ int main() {
 	printf("--------");
 	printf("%s\n", path);
 	printf("--------");
+	*/
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
 		char *echo_string = path + 6;
@@ -105,6 +107,10 @@ int main() {
 		char response[1024];
 		printf("kk\n");
 		FILE* fp = fopen(path, "r");
+		if (fp == NULL) {
+			printf("File Not Found!\n");
+		}
+		printf("Path: %s\n", path);
 		/*
 		if (fp == NULL) { 
 			printf("File Not Found!\n"); 
@@ -113,6 +119,9 @@ int main() {
     	} 
 		*/
 		printf("ll\n");
+		if (fseek(fp, 0L, SEEK_END) != 0) {
+			printf("Error seeking to end of file.\n");
+		}
 		fseek(fp, 0L, SEEK_END);
 		printf("şş\n");
 		long int res = ftell(fp); 
