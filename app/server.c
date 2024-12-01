@@ -78,11 +78,8 @@ int main() {
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
-	printf("Received from client: %s\n", buffer);
 	char *path = strtok(buffer, " ");
-	printf("%s\n", path);
   	path = strtok(NULL, " ");
-	printf("%s\n", path);
 	if (strncmp(path, "/echo/", 6) == 0) {
 		char *echo_string = path + 6;
 		char response[1024];
@@ -96,10 +93,7 @@ int main() {
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
 		for (int i = 0; i < 3; i++) { path = strtok(NULL, " "); }
-		printf("aa\n");
-		printf("%s\n", path);
 		char response[1024];
-		printf("%zu\n", strlen(path));
 		sprintf(response,
             "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: "
             "%ld\r\n\r\n%s",
