@@ -52,6 +52,8 @@ int main() {
 	printf("DD\n");
 	client_addr_len = sizeof(client_addr);
 	// here
+	fork();
+	fork();
 	pid_t  p = fork();
     if(p<0){
       perror("fork fail");
@@ -60,7 +62,7 @@ int main() {
 		printf("%d\n", p);
 		printf("aaaaaa\n");
 	}	
-	
+
 	client_fd = accept(server_fd, (struct sockaddr *) &client_addr, &client_addr_len);
 
 	if (client_fd < 0) {
