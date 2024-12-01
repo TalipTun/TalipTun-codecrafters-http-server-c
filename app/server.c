@@ -78,6 +78,7 @@ int main() {
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
+	printf("Received from client: %s\n", buffer);
 	char *path = strtok(buffer, " ");
 	printf("%s\n", path);
   	path = strtok(NULL, " ");
@@ -95,6 +96,8 @@ int main() {
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
 		printf("aa\n");
+		char response[1024];
+		send(client_fd, response, strlen(response), 0);
 	} else {
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    send(client_fd, reply, strlen(reply), 0);
