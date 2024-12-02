@@ -128,6 +128,7 @@ int main(int argc, char **argv) {
 	} else if (strncmp(path, "/files", 6) == 0) {
 		if (method != "POST") {
 			printf("33333\n");
+			printf("%s\n",method);
 			char response[1024];
 			char *file = strchr(path + 1, '/');
 			if (file != NULL) {
@@ -153,6 +154,7 @@ int main(int argc, char **argv) {
 			}
 		} else if (method == "POST") {
 			printf("firststepforhumanity\n");
+			printf("%s\n",method);
 		}
 	} else {
 		printf("5\n");
