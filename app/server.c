@@ -175,7 +175,9 @@ int main(int argc, char **argv) {
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filepath, "w");
 			printf("2\n");
-			fprintf(fptr, "%s", filetext + 2);
+			filetext++;
+			filetext++;
+			fprintf(fptr, "%s", filetext);
 			fclose(fptr);
 			printf("3\n");
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
