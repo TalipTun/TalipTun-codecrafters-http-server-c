@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %s\n", buffer);
-	char *testbuffer = buffer;
+	char *testbuffer = strrchr(buffer, '\\');
 	printf("--0-\n");
 	printf("testbuffer: %s\n", testbuffer);
 	printf("-1--\n");
