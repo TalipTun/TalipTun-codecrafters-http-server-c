@@ -155,6 +155,7 @@ int main(int argc, char **argv) {
 				} 
 			}
 		} else {
+			printf("77777\n");
 			char *file = strchr(path + 1, '/');
 			FILE *fptr;
 			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
