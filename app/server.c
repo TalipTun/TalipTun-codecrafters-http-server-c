@@ -94,6 +94,7 @@ int main(int argc, char **argv) {
 	printf("----&---\n");
   	path = strtok(NULL, " ");
 	printf("---&---\n");
+	path++;
 	printf("%s\n", path);
 	char *filelocation = path;
 	// /files/blueberry_mango_orange_grape
@@ -164,6 +165,7 @@ int main(int argc, char **argv) {
 			FILE *fptr;
 			printf("%s\n", method);
 			char *filepath = strcat(directory, file);
+			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			printf("%s\n", filepath);
 			fptr = fopen(filelocation, "w");
 			printf("%s\n",method);
