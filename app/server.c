@@ -83,8 +83,6 @@ int main(int argc, char **argv) {
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %s\n", buffer);
-	//this now works alhamdulliah
-	//banana blueberry orange banana orange grape raspberry orange
 	char *filetext = strrchr(buffer, '\r\n\r\n');
 	char *path = strtok(buffer, " ");
 	printf("----?---\n");
@@ -92,8 +90,6 @@ int main(int argc, char **argv) {
   	path = strtok(NULL, " ");
 	char *filelocation = path;
 	filelocation++;
-	// /files/blueberry_mango_orange_grape
-	printf("--------\n");
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
 		char *echo_string = path + 6;
@@ -157,26 +153,14 @@ int main(int argc, char **argv) {
 			printf("77777\n");
 			char *file = strchr(path + 1, '/');
 			FILE *fptr;
-			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
-			// this now works alhamdulillah
 			char *filepath = strcat(directory, ++file);
 			char *firstletter = filepath[0];
-			printf("aaaaaaa\n");
-			printf("%s\n", filepath);
-			printf("%s\n",filetext);
-			printf("aaaaaaa\n");
-			printf("1\n");
-			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filepath, "w");
-			printf("2\n");
 			filetext++;
 			fprintf(fptr, "%s", filetext);
 			fclose(fptr);
-			printf("3\n");
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
-			printf("4\n");
 			send(client_fd, reply, strlen(reply), 0);
-			printf("5\n");
 		}
 	} else {
 		printf("5\n");
