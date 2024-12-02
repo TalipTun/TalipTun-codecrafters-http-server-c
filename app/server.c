@@ -160,13 +160,20 @@ int main(int argc, char **argv) {
 			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
 			// this now works alhamdulillah
 			char *filepath = strcat(directory, ++file);
+			char *cleanedFilepath = "";
+			int count = 0;
+			char *firstletter = filepath[0];
+			for (int i = 0; i < strlen(filepath); i++) {
+				if (filepath[i] == " ") { count++;}
+			}
+			printf("%i\n",count);
 			printf("aaaaaaa\n");
 			printf("%s\n", filepath);
 			printf("%s\n",filetext);
 			printf("aaaaaaa\n");
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filelocation, "w");
-			// fprintf(fptr, "%s", fileText);
+			fprintf(fptr, "%s", filetext);
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
 			send(client_fd, reply, strlen(reply), 0);
 		}
