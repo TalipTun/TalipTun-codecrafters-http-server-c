@@ -85,6 +85,8 @@ int main(int argc, char **argv) {
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
 	printf("----?---\n");
+	// apple strawberry banana banana grape grape orange pear
+	char *fileText = buffer;
 	printf("%s\n", buffer);
 	printf("---?----\n");
 	char *method = path;
@@ -93,7 +95,10 @@ int main(int argc, char **argv) {
   	path = strtok(NULL, " ");
 	printf("---&---\n");
 	printf("%s\n", path);
+	char *filelocation = path;
+	// /files/blueberry_mango_orange_grape
 	printf("--------\n");
+	printf("%s\n", directory);
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
 		char *echo_string = path + 6;
@@ -154,8 +159,13 @@ int main(int argc, char **argv) {
 				} 
 			}
 		} else {
-			printf("firststepforhumanity\n");
+			FILE *fptr;
+			printf("%s\n", method);
+			char *filename = "";
+			fptr = fopen(filelocation, "w");
 			printf("%s\n",method);
+			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
+			send(client_fd, reply, strlen(reply), 0);
 		}
 	} else {
 		printf("5\n");
