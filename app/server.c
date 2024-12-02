@@ -82,6 +82,7 @@ int main(int argc, char **argv) {
 
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
+	char *testbuffer = buffer;
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
 	printf("----?---\n");
@@ -153,7 +154,7 @@ int main(int argc, char **argv) {
 			}
 		} else {
 			char *testpath = path;
-			printf("%s\n", buffer);
+			printf("%s\n", testbuffer);
 			char *teststring = strrchr(testpath, '\\');
 			printf("hihihihihihihihihi\n");
 			printf("%s\n", teststring);
