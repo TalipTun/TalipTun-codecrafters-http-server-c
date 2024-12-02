@@ -174,6 +174,7 @@ int main(int argc, char **argv) {
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filelocation, "w");
 			fprintf(fptr, "%s", filetext);
+			fclose(fptr);
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
 			send(client_fd, reply, strlen(reply), 0);
 		}
