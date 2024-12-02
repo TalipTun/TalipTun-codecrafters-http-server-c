@@ -87,6 +87,7 @@ int main(int argc, char **argv) {
 	printf("----?---\n");
 	printf("%s\n", buffer);
 	printf("---?----\n");
+	char *method = path;
 	printf("%s\n", path);
 	printf("----&---\n");
   	path = strtok(NULL, " ");
@@ -125,30 +126,34 @@ int main(int argc, char **argv) {
             counter - 4, path);
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
-		printf("33333\n");
-		char response[1024];
-		char *file = strchr(path + 1, '/');
-		if (file != NULL) {
-			printf("444444\n");
-			char *filepath = strcat(directory, file);
-			FILE *fd = fopen(filepath, "r");
-			if (fd != NULL) {
-				printf("555555\n");
-				char *current_buffer[BUFFER_SIZE] = {0};
-				int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
-				if (bytes_read > 0) {
-					sprintf(response, 
-					"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
-					bytes_read, current_buffer);
+		if (method != "POST") {
+			printf("33333\n");
+			char response[1024];
+			char *file = strchr(path + 1, '/');
+			if (file != NULL) {
+				printf("444444\n");
+				char *filepath = strcat(directory, file);
+				FILE *fd = fopen(filepath, "r");
+				if (fd != NULL) {
+					printf("555555\n");
+					char *current_buffer[BUFFER_SIZE] = {0};
+					int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
+					if (bytes_read > 0) {
+						sprintf(response, 
+						"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: %zu\r\n\r\n%s",
+						bytes_read, current_buffer);
 
-					send(client_fd, response, strlen(response), 0);
-				}
-			} else {
-					printf("66666\n");
-					char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
-					send(client_fd, reply, strlen(reply), 0);
-			} 
-		} 
+						send(client_fd, response, strlen(response), 0);
+					}
+				} else {
+						printf("66666\n");
+						char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
+						send(client_fd, reply, strlen(reply), 0);
+				} 
+			}
+		} else if (method == "POST") {
+			printf("firststepforhumanity\n");
+		}
 	} else {
 		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
