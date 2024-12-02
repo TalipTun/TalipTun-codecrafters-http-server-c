@@ -94,7 +94,6 @@ int main(int argc, char **argv) {
 	filelocation++;
 	// /files/blueberry_mango_orange_grape
 	printf("--------\n");
-	printf("%s\n", directory);
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
 		char *echo_string = path + 6;
@@ -105,7 +104,7 @@ int main(int argc, char **argv) {
             strlen(echo_string), echo_string);
 		send(client_fd, response, strlen(response), 0); 
 	} else if (strcmp(path, "/") == 0) {
-		printf("3\n");
+		printf("is this the problem?\n");
 		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
