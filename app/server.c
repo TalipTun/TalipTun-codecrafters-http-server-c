@@ -153,7 +153,7 @@ int main(int argc, char **argv) {
 						send(client_fd, reply, strlen(reply), 0);
 				} 
 			}
-		} else if (strncmp(method, "POST", 5) == 0) {
+		} else {
 			printf("firststepforhumanity\n");
 			printf("%s\n",method);
 		}
