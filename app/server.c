@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
 	printf("%s\n", buffer);
 	printf("--------");
   	path = strtok(NULL, " ");
-	printf("--------");
+	printf("-------");
 	printf("%s\n", path);
 	printf("--------");
 	if (strncmp(path, "/echo/", 6) == 0) {
