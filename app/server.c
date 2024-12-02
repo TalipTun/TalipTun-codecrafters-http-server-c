@@ -165,7 +165,7 @@ int main(int argc, char **argv) {
 			printf("%s\r\n", file);
 			FILE *fptr;
 			printf("%s\n", method);
-			char *filepath = strcat(directory, path);
+			char *filepath = strcat(directory, ++file);
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			printf("hihihaha\n");
 			printf("%s\n", filepath);
