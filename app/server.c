@@ -194,3 +194,4 @@ int main(int argc, char **argv) {
 	close(server_fd);
 	return 0;
 }
+// Received file content: "\napple apple strawberry strawberry banana mango banana grapeV"
