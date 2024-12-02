@@ -85,20 +85,10 @@ int main(int argc, char **argv) {
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
 	printf("----?---\n");
-	// apple strawberry banana banana grape grape orange pear
-	printf("---Iguesssoo----\n");
-	char *fileText = buffer;
-	printf("%s\n", buffer);
-	printf("---Iguesssoo----\n");
 	char *method = path;
-	printf("%s\n", path);
-	printf("----&---\n");
   	path = strtok(NULL, " ");
-	printf("---&---\n");
-	printf("%s\n", path);
 	char *filelocation = path;
 	filelocation++;
-	printf("%s\n", filelocation);
 	// /files/blueberry_mango_orange_grape
 	printf("--------\n");
 	printf("%s\n", directory);
@@ -162,6 +152,13 @@ int main(int argc, char **argv) {
 				} 
 			}
 		} else {
+			char *testpath = path;
+			printf("hihhaaha\n");
+			printf("%s\n", testpath);
+			printf("ambelelelel\n");
+			testpath = strtok(NULL, " ");
+			printf("%s\n", testpath);
+			printf("ambelelelel\n");
 			char *file = strchr(path + 1, '/');
 			FILE *fptr;
 			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
@@ -169,10 +166,7 @@ int main(int argc, char **argv) {
 			char *filepath = strcat(directory, ++file);
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filelocation, "w");
-			printf("hihhaaha\n");
-			printf("%s\n", fileText);
-			printf("ambelelelel\n");
-			fprintf(fptr, "%s", fileText);
+			// fprintf(fptr, "%s", fileText);
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
 			send(client_fd, reply, strlen(reply), 0);
 		}
