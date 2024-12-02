@@ -156,9 +156,12 @@ int main(int argc, char **argv) {
 			printf("hihhaaha\n");
 			printf("%s\n", testpath);
 			printf("ambelelelel\n");
-			testpath = strtok(NULL, " ");
-			printf("%s\n", testpath);
-			printf("ambelelelel\n");
+			for (int i = 0; i < 3; i++) { 
+				testpath = strtok(NULL, " ");
+                printf("%s\n", testpath);
+                printf("ambelelelel\n");
+			}
+			printf("finitoo\n");
 			char *file = strchr(path + 1, '/');
 			FILE *fptr;
 			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
