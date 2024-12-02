@@ -176,7 +176,6 @@ int main(int argc, char **argv) {
 			fptr = fopen(filepath, "w");
 			printf("2\n");
 			filetext++;
-			filetext++;
 			fprintf(fptr, "%s", filetext);
 			fclose(fptr);
 			printf("3\n");
