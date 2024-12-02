@@ -154,6 +154,7 @@ int main(int argc, char **argv) {
 			}
 		} else {
 			char *testpath = path;
+			printf("&&&&&&&&&&&&&&&&\n");
 			printf("%s\n", testbuffer);
 			char *teststring = strrchr(testpath, '\\');
 			printf("hihihihihihihihihi\n");
