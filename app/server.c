@@ -156,7 +156,7 @@ int main(int argc, char **argv) {
 			printf("hihhaaha\n");
 			printf("%s\n", testpath);
 			printf("ambelelelel\n");
-			for (int i = 0; i < 3; i++) { 
+			for (int i = 0; i < 6; i++) { 
 				testpath = strtok(NULL, " ");
                 printf("%s\n", testpath);
                 printf("ambelelelel\n");
