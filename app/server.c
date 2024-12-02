@@ -168,8 +168,9 @@ int main(int argc, char **argv) {
 			char *filepath = strcat(directory, ++file);
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filelocation, "w");
-			printf("hihhaaha");
+			printf("hihhaaha\n");
 			printf("%s\n", fileText);
+			printf("ambelelelel\n");
 			fprintf(fptr, "%s", fileText);
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
 			send(client_fd, reply, strlen(reply), 0);
