@@ -86,9 +86,10 @@ int main(int argc, char **argv) {
 	char *path = strtok(buffer, " ");
 	printf("----?---\n");
 	// apple strawberry banana banana grape grape orange pear
+	printf("---Iguesssoo----\n");
 	char *fileText = buffer;
 	printf("%s\n", buffer);
-	printf("---?----\n");
+	printf("---Iguesssoo----\n");
 	char *method = path;
 	printf("%s\n", path);
 	printf("----&---\n");
