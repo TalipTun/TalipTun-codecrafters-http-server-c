@@ -153,7 +153,7 @@ int main(int argc, char **argv) {
 			}
 		} else {
 			char *testpath = path;
-			printf("%s\n", testpath);
+			printf("%s\n", buffer);
 			char *teststring = strrchr(testpath, '\\');
 			printf("hihihihihihihihihi\n");
 			printf("%s\n", teststring);
