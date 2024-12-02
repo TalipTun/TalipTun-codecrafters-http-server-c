@@ -127,6 +127,7 @@ int main(int argc, char **argv) {
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
 		if (method != "POST") {
+			printf("%i\n", strlen(method));
 			printf("33333\n");
 			printf("%s\n",method);
 			char response[1024];
