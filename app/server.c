@@ -83,10 +83,9 @@ int main(int argc, char **argv) {
 	char buffer[1024];
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %s\n", buffer);
-	char *testbuffer = strrchr(buffer, '\r\n\r\n');
-	printf("--0-\n");
-	printf("testbuffer: %s\n", testbuffer);
-	printf("-1--\n");
+	//this now works alhamdulliah
+	//banana blueberry orange banana orange grape raspberry orange
+	char *filetext = strrchr(buffer, '\r\n\r\n');
 	char *path = strtok(buffer, " ");
 	printf("----?---\n");
 	char *method = path;
@@ -156,27 +155,15 @@ int main(int argc, char **argv) {
 				} 
 			}
 		} else {
-			char *testpath = path;
-			printf("&&&&&&&&&&&&&&&&\n");
-			printf("%s\n", testbuffer);
-			char *teststring = strrchr(testpath, '\\');
-			printf("hihihihihihihihihi\n");
-			printf("%s\n", teststring);
-			printf("hihhaaha\n");
-			strchr(testpath + 1, '/');
-			printf("%s\n", testpath);
-			printf("ambelelelel\n");
-			for (int i = 0; i < 6; i++) { 
-				testpath = strtok(NULL, " ");
-                printf("%s\n", testpath);
-                printf("ambelelelel\n");
-			}
-			printf("finitoo\n");
 			char *file = strchr(path + 1, '/');
 			FILE *fptr;
 			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
 			// this now works alhamdulillah
 			char *filepath = strcat(directory, ++file);
+			printf("aaaaaaa\n");
+			printf("%s\n", filepath);
+			printf("%s\n",filetext);
+			printf("aaaaaaa\n");
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filelocation, "w");
 			// fprintf(fptr, "%s", fileText);
