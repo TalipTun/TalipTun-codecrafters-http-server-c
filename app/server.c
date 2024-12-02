@@ -94,9 +94,10 @@ int main(int argc, char **argv) {
 	printf("----&---\n");
   	path = strtok(NULL, " ");
 	printf("---&---\n");
-	path++;
 	printf("%s\n", path);
 	char *filelocation = path;
+	filelocation++;
+	printf("%s\n", filelocation);
 	// /files/blueberry_mango_orange_grape
 	printf("--------\n");
 	printf("%s\n", directory);
