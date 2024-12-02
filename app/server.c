@@ -159,6 +159,8 @@ int main(int argc, char **argv) {
 				} 
 			}
 		} else {
+			char *file = strchr(path + 1, '/');
+			printf("%s\r\n", file);
 			FILE *fptr;
 			printf("%s\n", method);
 			char *filename = "";
