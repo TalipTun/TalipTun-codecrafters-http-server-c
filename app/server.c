@@ -163,7 +163,8 @@ int main(int argc, char **argv) {
 			printf("%s\r\n", file);
 			FILE *fptr;
 			printf("%s\n", method);
-			char *filename = "";
+			char *filepath = strcat(directory, file);
+			printf("%s\n", filepath);
 			fptr = fopen(filelocation, "w");
 			printf("%s\n",method);
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
