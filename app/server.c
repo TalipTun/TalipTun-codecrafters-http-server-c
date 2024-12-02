@@ -84,14 +84,15 @@ int main(int argc, char **argv) {
 	int received_bytes = recv(client_fd, buffer, sizeof(buffer) , 0);
 	printf("Received: %s\n", buffer);
 	char *path = strtok(buffer, " ");
-	printf("--------");
+	printf("----?---\n");
 	printf("%s\n", buffer);
+	printf("---?----\n");
 	printf("%s\n", path);
-	printf("--------");
+	printf("----&---\n");
   	path = strtok(NULL, " ");
-	printf("-------");
+	printf("---&---\n");
 	printf("%s\n", path);
-	printf("--------");
+	printf("--------\n");
 	if (strncmp(path, "/echo/", 6) == 0) {
 		printf("2\n");
 		char *echo_string = path + 6;
