@@ -162,15 +162,15 @@ int main(int argc, char **argv) {
 			}
 		} else {
 			char *file = strchr(path + 1, '/');
-			printf("%s\r\n", file);
 			FILE *fptr;
-			printf("%s\n", method);
+			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
+			// this now works alhamdulillah
 			char *filepath = strcat(directory, ++file);
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
-			printf("hihihaha\n");
-			printf("%s\n", filepath);
 			fptr = fopen(filelocation, "w");
-			printf("%s\n",method);
+			printf("hihhaaha");
+			printf("%s\n", fileText);
+			fprintf(fptr, "%s", fileText);
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
 			send(client_fd, reply, strlen(reply), 0);
 		}
