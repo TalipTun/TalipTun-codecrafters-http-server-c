@@ -85,13 +85,11 @@ int main(int argc, char **argv) {
 	printf("Received: %s\n", buffer);
 	char *filetext = strrchr(buffer, '\r\n\r\n');
 	char *path = strtok(buffer, " ");
-	printf("----?---\n");
 	char *method = path;
   	path = strtok(NULL, " ");
 	char *filelocation = path;
 	filelocation++;
 	if (strncmp(path, "/echo/", 6) == 0) {
-		printf("2\n");
 		char *echo_string = path + 6;
 		char response[1024];
 		sprintf(response,
@@ -100,15 +98,11 @@ int main(int argc, char **argv) {
             strlen(echo_string), echo_string);
 		send(client_fd, response, strlen(response), 0); 
 	} else if (strcmp(path, "/") == 0) {
-		printf("is this the problem?\n");
 		const char *response = "HTTP/1.1 200 OK\r\n\r\n";
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/user-agent", 11) == 0) {
-		printf("4\n");
 		for (int i = 0; i < 3; i++) { path = strtok(NULL, " "); }
 		char response[1024];
-		printf("%s\n", path);
-		printf("%i\n",strlen(path));
 		int counter = 0;
 		for (int i = 0; i < strlen(path); i++) {
 			char current_letter = path[i];
@@ -123,17 +117,12 @@ int main(int argc, char **argv) {
 		send(client_fd, response, strlen(response), 0);
 	} else if (strncmp(path, "/files", 6) == 0) {
 		if (strncmp(method, "POST", 5) != 0) {
-			printf("%i\n", strlen(method));
-			printf("33333\n");
-			printf("%s\n",method);
 			char response[1024];
 			char *file = strchr(path + 1, '/');
 			if (file != NULL) {
-				printf("444444\n");
 				char *filepath = strcat(directory, file);
 				FILE *fd = fopen(filepath, "r");
 				if (fd != NULL) {
-					printf("555555\n");
 					char *current_buffer[BUFFER_SIZE] = {0};
 					int bytes_read = fread(current_buffer, 1, BUFFER_SIZE, fd);
 					if (bytes_read > 0) {
@@ -144,13 +133,11 @@ int main(int argc, char **argv) {
 						send(client_fd, response, strlen(response), 0);
 					}
 				} else {
-						printf("66666\n");
 						char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 						send(client_fd, reply, strlen(reply), 0);
 				} 
 			}
 		} else {
-			printf("77777\n");
 			char *file = strchr(path + 1, '/');
 			FILE *fptr;
 			char *filepath = strcat(directory, ++file);
@@ -163,11 +150,9 @@ int main(int argc, char **argv) {
 			send(client_fd, reply, strlen(reply), 0);
 		}
 	} else {
-		printf("5\n");
 		char *reply = "HTTP/1.1 404 Not Found\r\n\r\n";
 	    send(client_fd, reply, strlen(reply), 0);
 	}
-	printf("6\n");
 	//cloose the client connection
 	close(client_fd);
 	close(server_fd);
