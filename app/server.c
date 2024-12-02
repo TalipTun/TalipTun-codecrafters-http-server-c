@@ -171,12 +171,17 @@ int main(int argc, char **argv) {
 			printf("%s\n", filepath);
 			printf("%s\n",filetext);
 			printf("aaaaaaa\n");
+			printf("1\n");
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
 			fptr = fopen(filelocation, "w");
+			printf("2\n");
 			fprintf(fptr, "%s", filetext);
 			fclose(fptr);
+			printf("3\n");
 			char *reply = "HTTP/1.1 201 Created\r\n\r\n";
+			printf("4\n");
 			send(client_fd, reply, strlen(reply), 0);
+			printf("5\n");
 		}
 	} else {
 		printf("5\n");
