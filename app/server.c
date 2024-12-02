@@ -116,7 +116,7 @@ int main(int argc, char **argv) {
 		int counter = 0;
 		for (int i = 0; i < strlen(path); i++) {
 			char current_letter = path[i];
-			if (current_letter != NULL || current_letter != " " || current_letter != "n" || current_letter!= "r") {
+			if (current_letter != NULL || current_letter != " " || current_letter != "n" || current_letter!= "r" || current_letter!= "\\") {
 				counter++;
 			}
 		}
@@ -160,13 +160,7 @@ int main(int argc, char **argv) {
 			// /tmp/data/codecrafters.io/http-server-tester/orange_raspberry_blueberry_grape
 			// this now works alhamdulillah
 			char *filepath = strcat(directory, ++file);
-			char *cleanedFilepath = "";
-			int count = 0;
 			char *firstletter = filepath[0];
-			for (int i = 0; i < strlen(filepath); i++) {
-				if (filepath[i] == " ") { count++;}
-			}
-			printf("%i\n",count);
 			printf("aaaaaaa\n");
 			printf("%s\n", filepath);
 			printf("%s\n",filetext);
