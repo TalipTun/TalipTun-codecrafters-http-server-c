@@ -159,7 +159,7 @@ int main(int argc, char **argv) {
 				} 
 			}
 		} else {
-			char *file = strchr(path + 1, '/');
+			char *file = strchr(path + 2, '/');
 			printf("%s\r\n", file);
 			FILE *fptr;
 			printf("%s\n", method);
