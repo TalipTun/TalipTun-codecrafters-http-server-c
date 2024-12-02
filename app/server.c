@@ -86,6 +86,7 @@ int main(int argc, char **argv) {
 	char *path = strtok(buffer, " ");
 	printf("--------");
 	printf("%s\n", buffer);
+	printf("%s\n", path);
 	printf("--------");
   	path = strtok(NULL, " ");
 	printf("-------");
