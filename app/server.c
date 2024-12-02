@@ -173,7 +173,7 @@ int main(int argc, char **argv) {
 			printf("aaaaaaa\n");
 			printf("1\n");
 			// /tmp/data/codecrafters.io/http-server-tester//mango_raspberry_pear_pineapple
-			fptr = fopen(filelocation, "w");
+			fptr = fopen(filepath, "w");
 			printf("2\n");
 			fprintf(fptr, "%s", filetext);
 			fclose(fptr);
